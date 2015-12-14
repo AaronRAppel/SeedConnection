@@ -21,7 +21,7 @@ namespace SeedConnection.Web.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("SeedConnection", throwIfV1Schema: false)
+            : base("DbConnection", throwIfV1Schema: false)
         {
         }
 

@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using SeedConnection.Services;
 
 namespace SeedConnection.Web.Controllers
 {
     public class HomeController : Controller
     {
+        ProductService _productService;
+
+        public HomeController()
+        {
+            _productService = new ProductService();
+        }
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        new public ActionResult Profile()
         {
-            ViewBag.Message = "Your application description page.";
+            string userId = User.Identity.GetUserId();
+            ViewBag.productList = _productService.GetProductsByUserId(userId);
 
             return View();
         }
